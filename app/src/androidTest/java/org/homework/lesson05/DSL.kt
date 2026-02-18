@@ -43,29 +43,19 @@ class Schedule {
     operator fun invoke(fnc: Schedule.() -> Unit) {
         fnc()
     }
-
-    //
-//    fun addShedule(day: Days, scheduleEntity: ScheduleEntity) {
-//        addShedule(day, scheduleEntity)
-//    }
-//
     var dayweek: Days? = null
-    fun monday(fnc: () -> Unit) = Days.MONDAY
-    fun tuesday(fnc: () -> Unit) = Days.TUESDAY
-    fun wednesday(fnc: () -> Unit) = Days.WEDNESDAY
-    fun thursday(fnc: () -> Unit) = Days.THURSDAY
-    fun friday(fnc: () -> Unit) = Days.FRIDAY
-    fun saturday(fnc: () -> Unit) = Days.SATURDAY
-    fun sunday(fnc: () -> Unit) = Days.SUNDAY
-
-
-//    operator fun String.rangeTo(time: ScheduleEntity) : Pair<LocalTime, LocalTime> {
-//        return time.startTime to time.endTime
-//    }
+    fun monday(fnc: Schedule.() -> Unit) = Days.MONDAY
+    fun tuesday(fnc: Schedule.() -> Unit) = Days.TUESDAY
+    fun wednesday(fnc: Schedule.() -> Unit) = Days.WEDNESDAY
+    fun thursday(fnc: Schedule.() -> Unit) = Days.THURSDAY
+    fun friday(fnc: Schedule.() -> Unit) = Days.FRIDAY
+    fun saturday(fnc: Schedule.() -> Unit) = Days.SATURDAY
+    fun sunday(fnc: Schedule.() -> Unit) = Days.SUNDAY
 
     operator fun String.rangeTo(time: String): Pair<LocalTime, LocalTime> {
-        return LocalTime.parse(this, timeFormatter) to
-                LocalTime.parse(time, timeFormatter)
+        val formatter = DateTimeFormatter.ofPattern("HH:mm")
+        return LocalTime.parse(this, formatter) to
+                LocalTime.parse(time, formatter)
     }
 
     infix fun Pair<LocalTime, LocalTime>.schedule(name: String) {
