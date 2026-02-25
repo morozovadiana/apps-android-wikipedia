@@ -97,10 +97,11 @@ class CheckingTheNumberOfCorners(val cornerNumber: Int) : TypeSafeDiagnosingMatc
         } else if (item.numberOfSide == 1 || item.numberOfSide == 2) {
             cornerNumber == 0
             return true
-        } else
+        } else {
             mismatchDescription.appendText("the side can't be <= 0")
                 .appendValue(item.numberOfSide)
-        return false
+            return false
+        }
     }
 
     override fun describeTo(description: Description) {
@@ -158,11 +159,9 @@ class CheckingNegativeLengthSide : TypeSafeDiagnosingMatcher<Shape>() {
         item: Shape,
         mismatchDescription: Description
     ): Boolean {
-        item.length.also {
-            if (it < 0) {
-                mismatchDescription.appendText("the side doesn't have negative value")
-                return false
-            }
+        if (item.length < 0) {
+            mismatchDescription.appendText("the side wasn't have negative value")
+            return false
         }
         return true
     }
@@ -180,13 +179,11 @@ class CheckNegativeQualityOfSides : TypeSafeDiagnosingMatcher<Shape>() {
         item: Shape,
         mismatchDescription: Description
     ): Boolean {
-        item.numberOfSide.also {
-            if (it < 0) {
-                mismatchDescription.appendText("the side doesn't have negative value")
-                return false
-            }
-            return true
+        if (item.numberOfSide < 0) {
+            mismatchDescription.appendText("the side doesn't have negative value")
+            return false
         }
+        return true
     }
 
     override fun describeTo(description: Description) {
