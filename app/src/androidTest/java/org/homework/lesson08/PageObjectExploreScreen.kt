@@ -10,6 +10,7 @@ import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
+import org.homework.lesson09.FeatureArticleItem
 import org.wikipedia.R
 import org.wikipedia.feed.view.FeedView
 
@@ -37,6 +38,7 @@ object ExploreScreen: KScreen<ExploreScreen>() {
             itemType(::DayItem)
             itemType(::TopReadItem)
             itemType(::NewsItem)
+            itemType(::FeatureArticleItem)
         }
     )
 }
