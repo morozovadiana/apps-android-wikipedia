@@ -31,7 +31,7 @@ class FeatureArticleTest : TestCase() {
             step("Нажимает Skip на экране онбординга") {
                 OnboardingScreen.skipButton.click()
             }
-            ExploreScreen.items.childWith<FeatureArticleItem> {
+            ExploreScreen.items.childWith<FeaturedArticleItem> {
                 isInstanceOf(FeaturedArticleCardView::class.java)
             } perform {
                 step("Проверяет отображение ,блока") {
@@ -49,11 +49,11 @@ class FeatureArticleTest : TestCase() {
 
             CustomizeScreen {
                 items.childWith<CustomizeRecycler> {
-                    withDescendant { withText("Feature article") }
+                    withDescendant { withText("Featured article") }
                 } perform {
-                    step("Отключает Featured Article") {
-                        checkbox.isDisplayed()
+                    step("Отключает тоггл Featured Article") {
                         checkbox.click()
+                        checkbox.isNotChecked()
                     }
                 }
 
@@ -62,11 +62,11 @@ class FeatureArticleTest : TestCase() {
                 }
             }
 
-            ExploreScreen.items.childWith<FeatureArticleItem> {
+            ExploreScreen.items.childWith<FeaturedArticleItem> {
                 isInstanceOf(FeaturedArticleCardView::class.java)
             }.perform {
                 step("Проверяет, что блок Featured Article не отображается на экране Explore") {
-                    title.doesNotExist()
+                    featureArticleTitle.doesNotExist()
                 }
             }
         }

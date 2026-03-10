@@ -8,10 +8,12 @@ import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
+import org.wikipedia.feed.featured.FeaturedArticleCardView
 
-class FeatureArticleItem (matcher: Matcher<View>): KRecyclerItem<FeatureArticleItem>(matcher) {
-    val title = KTextView(matcher){
+class FeaturedArticleItem (matcher: Matcher<View>): KRecyclerItem<FeaturedArticleItem>(matcher) {
+    val featureArticleTitle = KTextView(matcher){
         withId(R.id.view_card_header_title)
+        isInstanceOf(FeaturedArticleCardView::class.java)
     }
     val cardHeaderMenu = KImageView(matcher){
         withId(R.id.view_list_card_header_menu)

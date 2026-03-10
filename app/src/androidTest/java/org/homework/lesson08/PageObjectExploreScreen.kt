@@ -1,16 +1,10 @@
 package org.homework.lesson08
 
-import android.view.View
-import androidx.appcompat.widget.AppCompatImageView
+
 import com.kaspersky.kaspresso.screens.KScreen
-import io.github.kakaocup.kakao.common.views.KView
 import io.github.kakaocup.kakao.image.KImageView
-import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.recycler.KRecyclerView
-import io.github.kakaocup.kakao.text.KButton
-import io.github.kakaocup.kakao.text.KTextView
-import org.hamcrest.Matcher
-import org.homework.lesson09.FeatureArticleItem
+import org.homework.lesson09.FeaturedArticleItem
 import org.wikipedia.R
 import org.wikipedia.feed.view.FeedView
 
@@ -38,7 +32,7 @@ object ExploreScreen: KScreen<ExploreScreen>() {
             itemType(::DayItem)
             itemType(::TopReadItem)
             itemType(::NewsItem)
-            itemType(::FeatureArticleItem)
+            itemType(::FeaturedArticleItem)
         }
     )
 }
