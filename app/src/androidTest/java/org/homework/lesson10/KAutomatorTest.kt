@@ -15,7 +15,7 @@ class UiOnboardingTest : TestCase() {
     fun checkSkipButton() {
         run {
             OnboardingUiScreen{
-                skip.isDisplayed()
+                skipButton.isDisplayed()
             }
         }
     }
@@ -52,7 +52,7 @@ class UiOnboardingTest : TestCase() {
     @Test
     fun checkClickSkipButton() {
         run("Нажать на кнопку skip") {
-            OnboardingUiScreen.skip.click()
+            OnboardingUiScreen.skipButton.click()
         }
     }
 

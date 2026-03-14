@@ -4,7 +4,9 @@ package org.homework.lesson08
 import com.kaspersky.kaspresso.screens.KScreen
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerView
+import io.github.kakaocup.kakao.text.KButton
 import org.homework.lesson09.FeaturedArticleItem
+import org.homework.lesson11.WikipediaGames
 import org.wikipedia.R
 import org.wikipedia.feed.view.FeedView
 
@@ -22,6 +24,10 @@ object ExploreScreen: KScreen<ExploreScreen>() {
         withId(R.id.main_toolbar_wordmark)
     }
 
+    val retryButton = KButton{
+        withId(R.id.view_card_offline_button_retry)
+    }
+
     val items = KRecyclerView (
         builder = {
             withId(R.id.feed_view)
@@ -33,6 +39,7 @@ object ExploreScreen: KScreen<ExploreScreen>() {
             itemType(::TopReadItem)
             itemType(::NewsItem)
             itemType(::FeaturedArticleItem)
+            itemType(::WikipediaGames)
         }
     )
 }

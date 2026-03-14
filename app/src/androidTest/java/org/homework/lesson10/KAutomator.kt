@@ -5,8 +5,8 @@ import com.kaspersky.components.kautomator.component.text.UiButton
 import com.kaspersky.components.kautomator.component.text.UiTextView
 import com.kaspersky.components.kautomator.screen.UiScreen
 
-object OnboardingUiScreen: UiScreen<OnboardingUiScreen>() {
-    override val packageName = "org.wikipedia.alfa"
+object OnboardingUiScreen : UiScreen<OnboardingUiScreen>() {
+    override val packageName = "org.wikipedia.alpha"
 
     val image = UiView{
         withId(this@OnboardingUiScreen.packageName, "imageViewCentered")
@@ -26,7 +26,7 @@ object OnboardingUiScreen: UiScreen<OnboardingUiScreen>() {
         withId(this@OnboardingUiScreen.packageName, "addLanguageButton")
     }
 
-    val skip = UiButton{
+    val skipButton = UiButton{
         withId(this@OnboardingUiScreen.packageName, "fragment_onboarding_skip_button")
     }
 
@@ -50,14 +50,15 @@ object WikipediaLanguages: UiScreen<WikipediaLanguages>() {
         withText("Español")
     }
     val addLanguage = UiTextView{
-        withId(this@WikipediaLanguages.packageName, "Add language")
+        withId(this@WikipediaLanguages.packageName, "wiki_language_title")
+        withText("Add language")
     }
 }
 
 object AddALanguage: UiScreen<AddALanguage>() {
     override val packageName: String = "org.wikipedia.alfa"
 
-    val espanol = UiTextView{
+    val espanol = UiButton{
         withText("Español")
     }
 }
