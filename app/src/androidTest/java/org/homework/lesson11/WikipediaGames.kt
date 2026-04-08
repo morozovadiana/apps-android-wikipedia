@@ -11,5 +11,4 @@ class WikipediaGames (matcher: Matcher<View>): KRecyclerItem<WikipediaGames>(mat
     val cardTitle = KTextView{
         withId(R.id.viewWikiGamesCardTitle)
     }
-
 }
