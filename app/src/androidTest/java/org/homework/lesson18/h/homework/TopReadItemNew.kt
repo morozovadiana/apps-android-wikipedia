@@ -7,6 +7,8 @@ import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.homework.lesson08.TopReadRecyclerItems
+import org.homework.lesson18.h.homework.ExploreScreen.items
+import org.homework.lesson18.h.lesson.invokeAtIndex
 import org.homework.lesson18.h.lesson.name
 import org.homework.lesson18.h.lesson.withParent
 import org.wikipedia.R
@@ -41,5 +43,9 @@ class TopReadItemNew(matcher: Matcher<View>): KRecyclerItem<TopReadItemNew>(matc
         KTextView(matcher) {
             withId(R.id.footerActionButton)
         }.name(withParent("Текст More Top Read"))
+    }
+
+    fun TopReadBlockByIndex(index: Int, fnc: TopReadRecyclerItems.() -> Unit){
+        items.invokeAtIndex(index, fnc)
     }
 }

@@ -13,7 +13,7 @@ class NameHierarchy(private val name: String, private val parent: NameHierarchy?
     }
 }
 
-abstract class NamedScreen <T : NamedScreen<T>> : KScreen<T>() {
+abstract class NamedScreen <T : NamedScreen<T>>() : KScreen<T>() {
 
     abstract val screenName: String
 

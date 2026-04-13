@@ -1,15 +1,20 @@
 package org.homework.lesson18.h.homework
 
+import com.google.android.material.textview.MaterialTextView
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KButton
+import io.github.kakaocup.kakao.text.KTextView
 import org.homework.lesson18.h.lesson.NamedScreen
 import org.homework.lesson18.h.lesson.OnboardingScreen.pager
 import org.homework.lesson18.h.lesson.PagerItem
+import org.homework.lesson18.h.lesson.invokeAtIndex
 import org.homework.lesson18.h.lesson.invokeByIndex
+import org.homework.lesson18.h.lesson.invokeWithText
 import org.homework.lesson18.h.lesson.name
 import org.wikipedia.R
 import org.wikipedia.feed.view.FeedView
+import com.google.android.material.R.layout
 
 object ExploreScreen: NamedScreen<ExploreScreen>() {
 
@@ -42,5 +47,24 @@ object ExploreScreen: NamedScreen<ExploreScreen>() {
 
     fun page(index: Int, fnc: PagerItem.() -> Unit) {
         pager.invokeByIndex(index, fnc)
+    }
+    fun searchBlockByIndex(index: Int, fnc: SearchItemNew.() -> Unit){
+        items.invokeAtIndex(index, fnc)
+    }
+
+    fun searchItemByText(text: String,fnc: SearchItemNew.() -> Unit){
+        items.invokeWithText(text, fnc)
+    }
+    fun customizeBlock(fnc: CustomizeItemNew.() -> Unit){
+        items.invokeWithText("Customize", fnc)
+    }
+    fun TopReadBlock(fnc: TopReadItemNew.() -> Unit){
+        items.invokeWithText("Top Read", fnc)
+    }
+    val moreNavBar = KTextView{
+        withId(layout.design_bottom_navigation_item)
+         //   withId(R.id.main_nav_tab_layout)
+        withText("More")
+        isInstanceOf(MaterialTextView::class.java)
     }
 }

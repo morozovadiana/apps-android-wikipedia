@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.net.toUri
 import androidx.core.view.children
@@ -122,10 +123,10 @@ class GooglePayActivity : BaseActivity() {
             DonorExperienceEvent.submit("donate_confirm_click", "gpay",
                 "add_transaction: ${binding.checkBoxTransactionFee.isChecked}, recurring: ${binding.checkBoxRecurring.isChecked}, email_subscribe: ${binding.checkBoxAllowEmail.isChecked}")
 
-            AutoResolveHelper.resolveTask(
-                paymentsClient.loadPaymentData(viewModel.getPaymentDataRequest()),
-                this, LOAD_PAYMENT_DATA_REQUEST_CODE
-            )
+           // AutoResolveHelper.resolveTask(
+//                paymentsClient.loadPaymentData(viewModel.getPaymentDataRequest()),
+//                this, LOAD_PAYMENT_DATA_REQUEST_CODE
+            ActivityResultContracts.StartIntentSenderForResult()
         }
 
         binding.donateAmountText.addTextChangedListener { text ->
