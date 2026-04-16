@@ -6,6 +6,8 @@ import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
+import org.homework.lesson18.h.lesson.name
+import org.homework.lesson18.h.lesson.withParent
 import org.wikipedia.R
 
 class TopReadRecyclerItems(matcher: Matcher<View>): KRecyclerItem<TopReadRecyclerItems>(matcher) {
@@ -29,7 +31,9 @@ class TopReadRecyclerItems(matcher: Matcher<View>): KRecyclerItem<TopReadRecycle
         withId(R.id.view_list_card_item_pageviews)
     }
 
-    val imageView = KImageView(matcher) {
-        withId(R.id.view_list_card_item_image)
+    val imageView by lazy {
+        KImageView(matcher) {
+            withId(R.id.view_list_card_item_image)
+        }.name(withParent(" Image"))
     }
 }

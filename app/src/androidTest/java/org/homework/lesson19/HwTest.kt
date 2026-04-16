@@ -1,7 +1,6 @@
 package org.homework.lesson19
 
 import org.homework.lesson18.h.homework.ExploreScreen
-import org.homework.lesson18.h.homework.Settings
 import org.homework.lesson18.h.lesson.OnboardingScreen
 import org.homework.lesson19.ext.action
 import org.homework.lesson19.ext.verify
@@ -37,11 +36,11 @@ class HwTest : BaseTest(){
     fun checkSwitchOffShowLinkPreviewInSettings() {
         run {
             action.click(OnboardingScreen.skipButton)
-            action.click(ExploreScreen.moreNavBar)
-            action.click(Settings.settings)
-            action.click(Settings.showLinkPreviewChekbox)
-            Settings {
-                verify.isDisabled(showLinkPreviewChekbox)
+            action.click(CommonMenuButton.moreButton)
+            action.click(CommonMenuButton.settingsButton)
+            Settings.settingsItem("Show link previews") {
+                action.click(showLinkPreviewSwitch)
+                verify.isNotChecked(showLinkPreviewSwitch)
             }
 
         }
