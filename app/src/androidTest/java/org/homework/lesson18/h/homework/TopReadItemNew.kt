@@ -13,7 +13,7 @@ import org.homework.lesson18.h.lesson.name
 import org.homework.lesson18.h.lesson.withParent
 import org.wikipedia.R
 
-class TopReadItemNew(matcher: Matcher<View>): KRecyclerItem<TopReadItemNew>(matcher) {
+ class TopReadItemNew(matcher: Matcher<View>): KRecyclerItem<TopReadItemNew>(matcher) {
 
     val menu by lazy {
         KImageView(matcher) {
@@ -45,7 +45,7 @@ class TopReadItemNew(matcher: Matcher<View>): KRecyclerItem<TopReadItemNew>(matc
         }.name(withParent("Текст More Top Read"))
     }
 
-    fun TopReadBlockByIndex(index: Int, fnc: TopReadRecyclerItems.() -> Unit){
-        items.invokeAtIndex(index, fnc)
+    fun topReadBlockByIndex(index: Int, fnc: TopReadRecyclerItems.() -> Unit){
+        listItems.invokeAtIndex(index, fnc)
     }
 }

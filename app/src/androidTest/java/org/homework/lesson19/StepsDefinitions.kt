@@ -48,6 +48,12 @@ class StepDefinitions(private val testContext: TestContext<*>) {
         }
     }
 
+    fun isChecked(step: String, element: CheckableAssertions) {
+        execute(step) {
+            element.isChecked()
+        }
+    }
+
     private fun execute(step: String, fnc: () -> Unit) {
         testContext.step(step) {
             fnc()

@@ -26,6 +26,11 @@ object ExploreScreen: NamedScreen<ExploreScreen>() {
         withId(R.id.main_toolbar_wordmark)
     }.name(withParent("Изображение"))
 
+    val searchField = KTextView {
+        withText("Search Wikipedia")
+        isInstanceOf(MaterialTextView::class.java)
+    }
+
     val retryButton = KButton {
         withId(R.id.view_card_offline_button_retry)
     }.name(withParent("Кнопка Retry"))
@@ -48,23 +53,20 @@ object ExploreScreen: NamedScreen<ExploreScreen>() {
     fun page(index: Int, fnc: PagerItem.() -> Unit) {
         pager.invokeByIndex(index, fnc)
     }
-    fun searchBlockByIndex(index: Int, fnc: SearchItemNew.() -> Unit){
+
+    fun searchBlockByIndex(index: Int, fnc: SearchItemNew.() -> Unit) {
         items.invokeAtIndex(index, fnc)
     }
 
-    fun searchItemByText(text: String,fnc: SearchItemNew.() -> Unit){
+    fun searchItemByText(text: String, fnc: SearchItemNew.() -> Unit) {
         items.invokeWithText(text, fnc)
     }
-    fun customizeBlock(fnc: CustomizeItemNew.() -> Unit){
+
+    fun customizeBlock(fnc: CustomizeItemNew.() -> Unit) {
         items.invokeWithText("Customize", fnc)
     }
-    fun TopReadBlock(fnc: TopReadItemNew.() -> Unit){
-        items.invokeWithText("Top Read", fnc)
-    }
-    val moreNavBar = KTextView{
-        withId(layout.design_bottom_navigation_item)
-         //   withId(R.id.main_nav_tab_layout)
-        withText("More")
-        isInstanceOf(MaterialTextView::class.java)
+
+    fun topReadBlock(fnc: TopReadItemNew.() -> Unit) {
+        items.invokeWithText("Top read", fnc)
     }
 }

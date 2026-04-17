@@ -28,7 +28,7 @@ object Settings : NamedScreen<Settings>() {
     val recyclerSettings by lazy {
         KRecyclerView(
             builder = {
-                withId(R.id.recyclerView)
+                withId(R.id.recycler_view)
             },
             itemTypeBuilder = {
                 itemType(::RecyclerSettingsItem)
@@ -48,4 +48,5 @@ object Settings : NamedScreen<Settings>() {
                 withId(R.id.switchWidget)
             }.name(withParent("Переключатель настройки show link preview"))
         }
+
     }

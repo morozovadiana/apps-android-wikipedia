@@ -23,9 +23,9 @@ class HwTest : BaseTest(){
     fun checkTopReadImageIsDisplayed() {
         run {
             action.click(OnboardingScreen.skipButton)
-            ExploreScreen.TopReadBlock {
+            ExploreScreen.topReadBlock {
                 verify.isDisplayed(this)
-                TopReadBlockByIndex(2){
+                topReadBlockByIndex(2){
                     verify.isDisplayed(imageView)
                 }
             }
@@ -39,6 +39,7 @@ class HwTest : BaseTest(){
             action.click(CommonMenuButton.moreButton)
             action.click(CommonMenuButton.settingsButton)
             Settings.settingsItem("Show link previews") {
+                showLinkPreviewSwitch.setChecked(true)
                 action.click(showLinkPreviewSwitch)
                 verify.isNotChecked(showLinkPreviewSwitch)
             }

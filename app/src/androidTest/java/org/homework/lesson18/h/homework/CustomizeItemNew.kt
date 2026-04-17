@@ -11,6 +11,7 @@ import org.homework.lesson18.h.lesson.withParent
 import org.wikipedia.R
 
 class CustomizeItemNew(matcher: Matcher<View>): KRecyclerItem<CustomizeItemNew>(matcher) {
+
     val image by lazy{
         KImageView(matcher) {
             withId(R.id.view_announcement_header_image)
