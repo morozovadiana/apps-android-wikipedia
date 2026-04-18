@@ -47,6 +47,7 @@ object ExploreScreen: NamedScreen<ExploreScreen>() {
             itemType(::NewsItemNew)
             itemType(::FeaturedArticleItemNew)
             itemType(::WikipediaGamesNew)
+            itemType(::SearchItemNew)
         }
     ).name(withParent("Слайдер"))
 

@@ -169,14 +169,24 @@ apply from: '../gradle/src/test.gradle'
 apply from: '../gradle/src/ktlint.gradle'
 
 dependencies {
+    implementation libs.androidx.ui.test
+
 
     // To keep the Maven Central dependencies up-to-date
     // use http://gradleplease.appspot.com/ or http://search.maven.org/.
     // Debug with ./gradlew -q app:dependencies --configuration compile
-    androidTestImplementation("com.kaspersky.android-components:kaspresso-allure-support:1.6.0")
-    androidTestImplementation "com.kaspersky.android-components:kaspresso:1.6.0"
+    androidTestImplementation(libs.kaspresso.allure.support)
+    androidTestImplementation libs.kaspresso
     coreLibraryDesugaring libs.desugar.jdk.libs
+    implementation(platform("androidx.compose:compose-bom:2024.04.01")) // Используйте актуальный BOM
 
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.test.espresso:espresso-core:3.6.1'
+            // Примечание: Версия 3.7.0 еще может быть нестабильной или отсутствовать в Google Maven.
+            // Если 3.7.0 не найдется, попробуйте 3.6.1 (она совместима с вашим Kakao).
+        }
+    }
     implementation project(':analytics:testkitchen')
 
     implementation libs.kotlin.stdlib.jdk8
