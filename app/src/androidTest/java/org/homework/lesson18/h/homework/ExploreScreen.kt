@@ -15,6 +15,8 @@ import org.homework.lesson18.h.lesson.name
 import org.wikipedia.R
 import org.wikipedia.feed.view.FeedView
 import com.google.android.material.R.layout
+import org.homework.lesson18.h.lesson.invokeAtIndexAndClass
+import org.wikipedia.feed.featured.FeaturedArticleCardView
 
 object ExploreScreen: NamedScreen<ExploreScreen>() {
 
@@ -70,4 +72,17 @@ object ExploreScreen: NamedScreen<ExploreScreen>() {
     fun topReadBlock(fnc: TopReadItemNew.() -> Unit) {
         items.invokeWithText("Top read", fnc)
     }
+
+    fun featureArticle(index: Int, fnc: FeaturedArticleItemNew.() -> Unit) {
+        items.invokeAtIndexAndClass(
+            index,
+            (index + 1) * 10,
+            1,
+            FeaturedArticleCardView::class.java,
+            "$index : блок Featured Article",
+            fnc
+        )
+    }
+
+
 }
