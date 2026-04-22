@@ -10,6 +10,7 @@ import org.homework.lesson19.ext.verify
 import org.homework.lesson20.equalsWithTrim
 import org.homework.lesson20.multiAction
 import org.junit.Test
+import org.wikipedia.R
 
 
 // Напиши сценарий для страницы настроек, в котором нужно выбрать по индексу второй блок с чекбоксом
@@ -33,12 +34,12 @@ class TestExample : BaseTest() {
             action.click(CommonMenuButton.moreButton)
             action.click(CommonMenuButton.settingsButton)
             Settings {
-                settingsIdItem(0) {
+                settingsIdItem(0, R.id.switchWidget) {
                     showLinkPreviewSwitch.setChecked(false)
                     showLinkPreviewSwitch.multiAction()
                     verify.isChecked(showLinkPreviewSwitch)
                 }
-                settingsIdItem(1) {
+                settingsIdItem(1, R.id.title) {
                     title.equalsWithTrim("Collapse tables")
                 }
             }

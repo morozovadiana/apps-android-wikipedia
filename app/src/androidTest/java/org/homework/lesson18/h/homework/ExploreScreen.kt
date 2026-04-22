@@ -14,8 +14,8 @@ import org.homework.lesson18.h.lesson.invokeWithText
 import org.homework.lesson18.h.lesson.name
 import org.wikipedia.R
 import org.wikipedia.feed.view.FeedView
-import com.google.android.material.R.layout
 import org.homework.lesson18.h.lesson.invokeAtIndexAndClass
+import org.homework.lesson22.SearchWidget
 import org.wikipedia.feed.featured.FeaturedArticleCardView
 
 object ExploreScreen: NamedScreen<ExploreScreen>() {
@@ -37,6 +37,7 @@ object ExploreScreen: NamedScreen<ExploreScreen>() {
         withId(R.id.view_card_offline_button_retry)
     }.name(withParent("Кнопка Retry"))
 
+
     val items = KRecyclerView(
         builder = {
             withId(R.id.feed_view)
@@ -52,6 +53,13 @@ object ExploreScreen: NamedScreen<ExploreScreen>() {
             itemType(::SearchItemNew)
         }
     ).name(withParent("Слайдер"))
+
+    val searchWidget by lazy{
+        SearchWidget {
+            withId(R.id.search_container)
+        }
+        .name(withParent("Виджет поиска"))
+    }
 
     fun page(index: Int, fnc: PagerItem.() -> Unit) {
         pager.invokeByIndex(index, fnc)
