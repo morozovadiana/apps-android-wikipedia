@@ -34,10 +34,10 @@ object Settings : NamedScreen<Settings>() {
         recyclerSettings.invokeWithText(text, fnc)
     }
 
-    fun settingsIdItem(index: Int, fnc: RecyclerSettingsItem.() -> Unit){
+    fun settingsIdItem(index: Int, resourceId: Int, fnc: RecyclerSettingsItem.() -> Unit){
         recyclerSettings.invokeAtIndexAndId(
             index,
-            R.id.switchWidget,
+            resourceId,
             10,
             0,
             "$index : блок",
