@@ -5,6 +5,7 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.text.TextViewAssertions
 import org.homework.lesson18.h.lesson.getName
+import org.homework.lesson23.KWebViewElement
 
 class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
 
@@ -58,6 +59,13 @@ class Verify(private val steps: StepDefinitions) : StepsDsl<Verify>() {
     fun isChecked(element: CheckableAssertions) {
         steps.isChecked(
             "Проверяет, что элемент \${(element as BaseActions).getName()}' включен",
+            element
+        )
+    }
+
+    fun isDisplayed(element: KWebViewElement) {
+        steps.isDisplayed(
+            "Проверяет, что отображается '${element.getName()}'",
             element
         )
     }
