@@ -1,9 +1,7 @@
 package org.homework.lesson23
 
 import androidx.compose.ui.test.hasText
-import org.homework.lesson08.TopReadItem
 import org.homework.lesson18.h.homework.ExploreScreen
-import org.homework.lesson18.h.homework.TopReadItemNew
 import org.homework.lesson18.h.lesson.OnboardingScreen
 import org.homework.lesson19.BaseTest
 import org.homework.lesson19.ext.action

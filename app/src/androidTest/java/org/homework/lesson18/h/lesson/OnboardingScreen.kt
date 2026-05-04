@@ -10,6 +10,10 @@ import io.github.kakaocup.kakao.text.KButton
 import io.github.kakaocup.kakao.text.KTextView
 import io.github.kakaocup.kakao.text.TextViewAssertions
 import org.hamcrest.Matcher
+import org.homework.lesson18.h.homework.ExploreScreen.items
+import org.homework.lesson18.h.homework.SearchItemNew
+import org.homework.lesson18.h.homework.TopReadItemNew
+import org.homework.lesson18.h.lesson.OnboardingScreen.pager
 import org.wikipedia.R
 
 object OnboardingScreen : NamedScreen<OnboardingScreen>() {
@@ -60,18 +64,30 @@ class PagerItem(matcher: Matcher<View>) : KViewPagerItem<PagerItem>(matcher) {
         }.name(withParent("Кнопка добавления языка"))
     }
 
-    val languages by lazy {
-        KRecyclerView(
-            parent = matcher,
+    val listLanguages by lazy {
+        KViewPager2(
             builder = {
-                withId(R.id.languagesList)
-            },
-            itemTypeBuilder = {
-                itemType(::LanguageItem)
-            }
+            withId(R.id.languageList)
+        },
+        itemTypeBuilder = {
+            itemType(::LanguageItem)
+        }
         ).name(withParent("Список языков"))
+    }
+    fun pageLanguages(index: Int, fnc: LanguageItem.() -> Unit) {
+        listLanguages.invokeByIndex(index, fnc)
     }
 }
 
-class LanguageItem(matcher: Matcher<View>) : KRecyclerItem<PagerItem>(matcher), TextViewAssertions
+class LanguageItem(matcher: Matcher<View>) : KViewPagerItem<LanguageItem>(matcher) {
+
+    val languageName by lazy {
+        KTextView{
+            withId(R.id.option_label)
+        }
+    }
+}
+
+
+
 

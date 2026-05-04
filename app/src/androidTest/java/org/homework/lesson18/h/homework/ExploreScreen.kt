@@ -61,9 +61,9 @@ object ExploreScreen: NamedScreen<ExploreScreen>() {
         .name(withParent("Виджет поиска"))
     }
 
-    fun page(index: Int, fnc: PagerItem.() -> Unit) {
-        pager.invokeByIndex(index, fnc)
-    }
+//    fun page(index: Int, fnc: PagerItem.() -> Unit) {
+//        pager.invokeByIndex(index, fnc)
+//    }
 
     fun searchBlockByIndex(index: Int, fnc: SearchItemNew.() -> Unit) {
         items.invokeAtIndex(index, fnc)

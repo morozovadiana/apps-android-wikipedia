@@ -38,6 +38,9 @@ import org.wikipedia.compose.components.error.WikiErrorClickEvents
 import org.wikipedia.compose.components.error.WikiErrorView
 import org.wikipedia.compose.theme.BaseTheme
 import org.wikipedia.compose.theme.WikipediaTheme
+import org.wikipedia.compose.uiTests.Tags
+import org.wikipedia.compose.uiTests.lazyListItemPosition
+import org.wikipedia.compose.uiTests.lazyListSize
 import org.wikipedia.theme.Theme
 import org.wikipedia.util.StringUtil
 import org.wikipedia.util.UiState
@@ -124,7 +127,8 @@ fun LanguagesListScreen(
                     modifier = modifier
                         .fillMaxSize()
                         .padding(paddingValues)
-                        .testTag("language_list"),
+                        .testTag(Tags.LANGUAGE_LIST)
+                        .lazyListSize(languagesItems.size),
                 ) {
                     itemsIndexed(languagesItems) { index, languageItem ->
                         if (languageItem.headerText.isNotEmpty()) {
@@ -133,7 +137,8 @@ fun LanguagesListScreen(
                                     .height(56.dp)
                                     .fillMaxWidth()
                                     .padding(horizontal = 16.dp)
-                                    .padding(bottom = 4.dp),
+                                    .padding(bottom = 4.dp)
+                                    .lazyListItemPosition(index),
                                 title = languageItem.headerText
                             )
                         } else {
@@ -196,7 +201,8 @@ fun LanguageListItemView(
             style = MaterialTheme.typography.titleMedium.copy(
                 color = WikipediaTheme.colors.primaryColor,
                 fontWeight = FontWeight.Bold,
-            )
+            ),
+            modifier = Modifier.testTag(Tags.LOCALIZED_LANGUAGE_NAME)
         )
         if (subtitle != null) {
             Text(
@@ -205,7 +211,8 @@ fun LanguageListItemView(
                     color = WikipediaTheme.colors.secondaryColor,
                     textAlign = TextAlign.Center,
                     lineHeight = 24.sp,
-                )
+                ),
+                modifier= Modifier.testTag(Tags.CANONICAL_LANGUAGE)
             )
         }
     }
