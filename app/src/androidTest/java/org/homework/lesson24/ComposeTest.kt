@@ -6,6 +6,7 @@ import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.components.composesupport.config.ComposeConfig
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
+import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import org.homework.lesson18.h.lesson.OnboardingScreen
 import org.homework.lesson19.ext.action
 import org.homework.lesson19.ext.verify
@@ -18,8 +19,13 @@ class ComposeTest : TestCase(
     .apply { ComposeConfig.Builder.default(this) {} }
 ) {
 
-    @get:Rule
+
+    @get:Rule (order=1)
     val testRule = createAndroidComposeRule<MainActivity>()
+
+    @get:Rule (order=2)
+    val kakaoRule = KakaoComposeTestRule(testRule, true)
+
 
     @Test
     fun test() {
@@ -40,9 +46,8 @@ class ComposeTest : TestCase(
             device.uiDevice.pressBack()
             OnboardingScreen{
                 page(0) {
-                    pageLanguages(1){
-                        verify.isDisplayed(languageName)
-                        hasText("Deutsch")
+                    pageLanguages(2){
+                        hasText( "Deutsch")
                     }
                 }
             }

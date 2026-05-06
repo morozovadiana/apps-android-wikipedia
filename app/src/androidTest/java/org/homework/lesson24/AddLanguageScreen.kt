@@ -19,7 +19,7 @@ object AddLanguageScreen : ComposeNamedScreen<AddLanguageScreen> () {
     }
 
     fun languageBlock(text: String, fnc: LanguageItem.() -> Unit) {
-        items.invokeWithText(text, fnc)
+        items.invokeWithText<LanguageItem>(text, fnc)
     }
 }
 
