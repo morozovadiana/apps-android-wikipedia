@@ -10,6 +10,9 @@ import io.github.kakaocup.kakao.text.TextViewAssertions
 import org.homework.lesson23.KWebViewElement
 import org.homework.lesson24.assertTrimmedTextIsEquals
 import org.homework.lesson24.clickIfEnabled
+import org.homework.lesson25.CloseGotIt
+import org.homework.lesson25.ClosePlayTodayGame
+import org.homework.lesson25.PassInterferingScreens
 
 class StepDefinitions(private val testContext: TestContext<*>) {
 
@@ -78,11 +81,21 @@ class StepDefinitions(private val testContext: TestContext<*>) {
             element.assertTrimmedTextIsEquals(expected)
         }
     }
+    private val passInterferingScreens = PassInterferingScreens(
+        listOf(
+            ClosePlayTodayGame(testContext),
+            CloseGotIt(testContext)
+        )
+    )
 
     private fun execute(step: String, fnc: () -> Unit) {
         testContext.step(step) {
-            fnc()
+            try {
+                fnc()
+            } catch (_: Throwable) {
+                passInterferingScreens.execute()
+                fnc()
+            }
         }
     }
-
 }
