@@ -8,7 +8,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.main.MainActivity
 
-class HWTest : TestCase(){
+class HWTestDeprecated : TestCase(){
 
     @get:Rule
     val testRule = ActivityScenarioRule(MainActivity::class.java)

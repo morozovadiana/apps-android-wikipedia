@@ -1,0 +1,24 @@
+#!/bin/bash
+sdkmanager --list
+#Создаёт эмулятор
+sdkmanager "platform-tools" "emulator" "system-images;android-35;google_apis;arm64-v8a"
+avdmanager create avd \
+ --name emulator-5584 \
+ --package "system-images;android-35;google_apis;arm64-v8a" \
+ --device "pixel"
+#Запускает эмулятор
+echo 'export PATH="$PATH:/Users/dmorozova/Library/Android/sdk/emulator"' >> ~/.zshrc
+emulator -avd emulator-5584 \
+ -no-snapshot \
+ -wipe-data \
+ -port 5584 \
+ -skin 720x1280 \
+ -gpu host &
+#Ждёт минуту
+sleep 1m
+#Запускает выполнение теста командой ./gradlew app:connectedAlfaDedugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.package.MyTestClass#myTestMethod
+#Замените com.example.package.MyTestClass#myTestMethod на полный путь к вашему классу и конкретному методу теста
+./gradlew app:connectedAlphaDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=org.homework.lesson28.HWTestDescription#test1
+#Завершает работу эмулятора
+adb -s emulator-5584 emu kill
+#Выполняет генерацию отчёта с открытием в браузере

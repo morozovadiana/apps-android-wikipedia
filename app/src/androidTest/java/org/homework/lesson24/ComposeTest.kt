@@ -12,6 +12,7 @@ import org.homework.lesson19.ext.action
 import org.homework.lesson19.ext.verify
 import org.junit.Rule
 import org.junit.Test
+import org.wikipedia.BuildConfig
 import org.wikipedia.main.MainActivity
 
 class ComposeTest : TestCase(
@@ -38,8 +39,8 @@ class ComposeTest : TestCase(
             action.click(WikipediaLanguage.addLanguage)
             AddLanguageScreen {
                 languageBlock("Deutsch") {
-                verify.assertTrimmedTextIsEquals(localName, "Deutsch")
-                verify.assertTrimmedTextIsEquals(canonicName, "German")
+                verify.assertTrimmedTextIsEquals(localName, BuildConfig.LOCAL_LANGUAGE)
+                verify.assertTrimmedTextIsEquals(canonicName, BuildConfig.CANONICAL_LANGUAGE)
                 action.clickIfEnabled(localName)
             }
         }
@@ -47,7 +48,7 @@ class ComposeTest : TestCase(
             OnboardingScreen{
                 page(0) {
                     pageLanguages(2){
-                        hasText( "Deutsch")
+                        hasText(BuildConfig.LOCAL_LANGUAGE)
                     }
                 }
             }
