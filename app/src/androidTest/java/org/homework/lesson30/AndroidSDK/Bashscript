@@ -1,0 +1,8 @@
+#!/bin/bash
+#запускать наш образ с опцией -d и заранее заданным именем контейнера и примонтированным проектом
+# (docker run --rm -d --name my-container-name -v ".:/project" -w /project my-image-name sleep infinity)
+docker run --rm -d --name flamboyant -v /Users/dmorozova/StudioProjects/apps-android-wikipedia:/project -w /project android-jdk21 sleep infinity
+ #запускать в этом образе через exec команду очистки сборочной директории
+ # (docker exec my-container-name sh -c "sed -i 's/\r$//' gradlew && chmod +x gradlew && ./gradlew app:clean")
+docker exec flamboyant sh -c "sed -i 's/\r$//' gradlew && chmod +x gradlew && ./gradlew app:clean"
+docker stop flamboyant
