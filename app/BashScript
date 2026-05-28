@@ -1,0 +1,40 @@
+#!/bin/bash
+# Компилирует приложение и тесты в apk файлы
+export ANDROID_HOME="/Users/dmorozova/Library/Android/sdk"
+export ANDROID_SDK_ROOT="/Users/dmorozova/Library/Android/sdk"
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
+
+cd "/Users/dmorozova/StudioProjects/apps-android-wikipedia"
+chmod +x gradlew && ./gradlew app:assembleAlphaDebug app:assembleAlphaDebugAndroidTest
+  #Создаёт и запускает пару эмуляторов
+sdkmanager "platform-tools" "emulator" "system-images;android-35;google_apis;arm64-v8a"
+avdmanager create avd \
+ --name emulator-5584 \
+ --package "system-images;android-35;google_apis;arm64-v8a" \
+ --device "pixel" --force
+sdkmanager "platform-tools" "emulator" "system-images;android-35;google_apis_playstore;arm64-v8a"
+avdmanager create avd \
+ --name emulator-5588 \
+ --package "system-images;android-35;google_apis_playstore;arm64-v8a" \
+ --device "pixel" --force
+emulator -avd emulator-5584 \
+ -no-snapshot \
+ -wipe-data \
+ -port 5554 \
+ -skin 720x1280 \
+ -gpu host &
+ emulator -avd emulator-5588 \
+  -no-snapshot \
+  -wipe-data \
+  -port 5556 \
+  -skin 720x1280 \
+  -gpu host &
+  #Ждёт пару минут, чтобы эмуляторы точно загрузились
+  sleep 90
+  adb devices
+
+  #Запускает Marathon
+  marathon
+  #Завершает эмуляторы после завершения работы Marathon
+  adb -s emulator-5556 emu kill || true
+  adb -s emulator-5554 emu kill || true
